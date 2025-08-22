@@ -1,57 +1,111 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>คลิกเดียว เปิด Lazada + คงอยู่ Doujin-TH</title>
 
-  <!-- Open Graph (สำหรับพรีวิว Facebook/Line) -->
-  <meta property="og:locale" content="th_TH">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://tataptools.github.io/index.html">
-  <meta property="og:title" content="คลิกครั้งเดียว เปิด Lazada ในแท็บใหม่">
-  <meta property="og:description" content="คงอยู่หน้าเดิมที่ Doujin-TH และเด้ง Lazada ในเบราว์เซอร์ภายนอก (ถ้าเป็นไปได้)">
-  <meta property="og:image" content="https://img2.pic.in.th/pic/imgi_1_535001253_122107948742973201_4332654874288949334_n78b315d493b5e2d2.jpg">
-  <meta property="og:image:width" content="720">
-  <meta property="og:image:height" content="720">
+  <!--
+    ✅ วิธีตั้งค่าให้พรีวิวติด (Facebook/LINE/Twitter)
+    1) แก้ค่า SITE_URL ด้านล่างให้เป็น URL ของหน้า GitHub Pages จริง ๆ
+       - ถ้าเป็น User site:   https://tataptools.github.io/
+       - ถ้าเป็น Project site: https://tataptools.github.io/<REPO-NAME>/
+       * อย่าใส่ index.html ต่อท้าย
+    2) commit/push ไฟล์นี้ไปยัง branch/โฟลเดอร์เดียวกับที่ตั้งค่าใน Settings → Pages
+    3) แชร์ลิงก์ SITE_URL เพื่อให้ระบบดึง OG จากหน้านี้
+  -->
+  <script>
+    // ⚙️ ตั้งค่า URL ของหน้านี้ (สำหรับ OG)
+    const SITE_URL = "https://tataptools.github.io/"; // ← แก้ให้ตรงกับของจริง
+  </script>
+
+  <!-- Open Graph / Twitter Card -->
+  <meta property="og:locale" content="th_TH" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tataptools.github.io/" />
+  <meta property="og:title" content="คลิกครั้งเดียว เปิด Lazada ในแท็บใหม่" />
+  <meta property="og:description" content="คงอยู่หน้าเดิมที่ Doujin-TH และเด้ง Lazada ในเบราว์เซอร์ภายนอก (ถ้าเป็นไปได้)" />
+  <meta property="og:image" content="https://img2.pic.in.th/pic/imgi_1_535001253_122107948742973201_4332654874288949334_n78b315d493b5e2d2.jpg" />
+  <meta property="og:image:width" content="720" />
+  <meta property="og:image:height" content="720" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://tataptools.github.io/" />
 
   <style>
-    /* คลิกได้ทั้งหน้า */
+    html, body { height: 100%; }
     body {
       margin: 0;
-      height: 100vh;
+      min-height: 100vh;
       width: 100vw;
+      display: grid;
+      place-items: center;
       cursor: pointer;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans";
+      -webkit-tap-highlight-color: transparent;
     }
+    h2 { text-align: center; line-height: 1.4; padding: 0 1rem; }
+    .hint { font-size: 0.9rem; opacity: .7; text-align:center; margin-top: .75rem; }
   </style>
 
   <script>
     function openLinks() {
-      const lazadaUrl = "https://lazada.co.th";
+      const lazadaHttp = "https://lazada.co.th";
+      const lazadaDeep = "lazada://home"; // เผื่อเปิดแอปบนมือถือ
       const doujinUrl = "https://doujin-th.com/forum/index.php?topic=47339.0";
 
       const ua = navigator.userAgent || navigator.vendor || window.opera;
       const isAndroid = /android/i.test(ua);
-      const isInApp = /FBAN|FBAV|Line|Instagram|Twitter/i.test(ua);
+      const isIOS = /iPad|iPhone|iPod/.test(ua);
+      const isInApp = /(FBAN|FBAV|Line|Instagram|Twitter)/i.test(ua);
 
-      if (isAndroid && isInApp) {
-        // พยายามเปิดภายนอก (Chrome)
-        window.location.href = "intent://" + lazadaUrl.replace("https://", "") +
-          "#Intent;scheme=https;package=com.android.chrome;end";
-      } else {
-        // เปิด Lazada ในแท็บใหม่
-        window.open(lazadaUrl, "_blank");
+      try {
+        if (isAndroid && isInApp) {
+          // พยายามเด้ง Chrome ภายนอกด้วย Android intent
+          location.href = "intent://lazada.co.th#Intent;scheme=https;package=com.android.chrome;end";
+        } else if (isIOS && isInApp) {
+          // บาง In-App iOS บล็อก window.open — ลอง deep link ก่อนแล้ว fallback
+          const timeout = setTimeout(() => {
+            location.href = lazadaHttp;
+          }, 700);
+          location.href = lazadaDeep; // ถ้ามีแอปจะสลับทันที
+          setTimeout(() => clearTimeout(timeout), 1500);
+        } else {
+          // เบราว์เซอร์ปกติ: เปิด Lazada แท็บใหม่
+          const win = window.open(lazadaHttp, "_blank", "noopener,noreferrer");
+          if (!win) location.assign(lazadaHttp); // ถ้าถูกบล็อก popup
+        }
+      } catch (e) {
+        location.assign(lazadaHttp);
       }
 
-      // Redirect หน้าเดิมไป Doujin-TH
-      window.location.href = doujinUrl;
+      // ส่งหน้าเดิมไป Doujin-TH
+      location.href = doujinUrl;
     }
 
-    document.addEventListener("click", openLinks, { once: true });
+    // คลิกครั้งเดียวทำงาน
+    addEventListener("click", () => openLinks(), { once: true });
+
+    // ป้องกัน crawler เห็นสคริปต์แปลก ๆ ใน head: อัปเดต og:url + canonical ด้วย SITE_URL ที่ตั้งไว้ด้านบน
+    document.addEventListener("DOMContentLoaded", () => {
+      try {
+        const metas = document.querySelectorAll('meta[property="og:url"]');
+        metas.forEach(m => m.setAttribute('content', SITE_URL));
+        const linkCanon = document.querySelector('link[rel="canonical"]');
+        if (linkCanon) linkCanon.setAttribute('href', SITE_URL);
+      } catch {}
+    });
   </script>
 </head>
 <body>
-  <h2 style="text-align:center;margin-top:40vh;">
-    👉 คลิกตรงไหนก็ได้ เพื่อเปิด Lazada + ไปที่ Doujin-TH
-  </h2>
+  <main>
+    <h2>👉 คลิกตรงไหนก็ได้ เพื่อเปิด Lazada + ไปที่ Doujin-TH</h2>
+    <div class="hint">ถ้าถูกบล็อกป๊อปอัป เบราว์เซอร์จะเปิด Lazada ในแท็บเดียวแทน</div>
+    <noscript>
+      จำเป็นต้องเปิดใช้งาน JavaScript<br>
+      <a href="https://lazada.co.th" target="_blank" rel="noopener">เปิด Lazada</a>
+      &nbsp;|
+      <a href="https://doujin-th.com/forum/index.php?topic=47339.0">ไปที่ Doujin-TH</a>
+    </noscript>
+  </main>
 </body>
 </html>
