@@ -16,20 +16,20 @@
   -->
   <script>
     // ⚙️ ตั้งค่า URL ของหน้านี้ (สำหรับ OG)
-    const SITE_URL = "https://tataptools.github.io/"; // ← แก้ให้ตรงกับของจริง
+    const SITE_URL = "https://tataptools.github.io/index.html/"; // ← แก้ให้ตรงกับของจริง
   </script>
 
   <!-- Open Graph / Twitter Card -->
   <meta property="og:locale" content="th_TH" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://tataptools.github.io/" />
+  <meta property="og:url" content="https://tataptools.github.io/index.html/" />
   <meta property="og:title" content="คลิกครั้งเดียว เปิด Lazada ในแท็บใหม่" />
   <meta property="og:description" content="คงอยู่หน้าเดิมที่ Doujin-TH และเด้ง Lazada ในเบราว์เซอร์ภายนอก (ถ้าเป็นไปได้)" />
   <meta property="og:image" content="https://img2.pic.in.th/pic/imgi_1_535001253_122107948742973201_4332654874288949334_n78b315d493b5e2d2.jpg" />
   <meta property="og:image:width" content="720" />
   <meta property="og:image:height" content="720" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="canonical" href="https://tataptools.github.io/" />
+  <link rel="canonical" href="https://tataptools.github.io/index.html/" />
 
   <style>
     html, body { height: 100%; }
