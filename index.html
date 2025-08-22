@@ -3,33 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>คลิกเดียว เปิด Lazada + คงอยู่ Doujin-TH</title>
+  <title>เปิด Lazada จาก Doujin‑TH (รุ่นพรีวิว)</title>
 
-  <!--
-    ✅ วิธีตั้งค่าให้พรีวิวติด (Facebook/LINE/Twitter)
-    1) แก้ค่า SITE_URL ด้านล่างให้เป็น URL ของหน้า GitHub Pages จริง ๆ
-       - ถ้าเป็น User site:   https://tataptools.github.io/
-       - ถ้าเป็น Project site: https://tataptools.github.io/<REPO-NAME>/
-       * อย่าใส่ index.html ต่อท้าย
-    2) commit/push ไฟล์นี้ไปยัง branch/โฟลเดอร์เดียวกับที่ตั้งค่าใน Settings → Pages
-    3) แชร์ลิงก์ SITE_URL เพื่อให้ระบบดึง OG จากหน้านี้
-  -->
-  <script>
-    // ⚙️ ตั้งค่า URL ของหน้านี้ (สำหรับ OG)
-    const SITE_URL = "https://tataptools.github.io/index.html/"; // ← แก้ให้ตรงกับของจริง
-  </script>
-
-  <!-- Open Graph / Twitter Card -->
+  <!-- ✅ Open Graph สำหรับพรีวิวที่ https://tataptools.github.io/open/ -->
   <meta property="og:locale" content="th_TH" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://tataptools.github.io/index.html/" />
-  <meta property="og:title" content="คลิกครั้งเดียว เปิด Lazada ในแท็บใหม่" />
+  <meta property="og:url" content="https://tataptools.github.io/open/" />
+  <meta property="og:title" content="คลิกเดียว เปิด Lazada ในแท็บใหม่" />
   <meta property="og:description" content="คงอยู่หน้าเดิมที่ Doujin-TH และเด้ง Lazada ในเบราว์เซอร์ภายนอก (ถ้าเป็นไปได้)" />
   <meta property="og:image" content="https://img2.pic.in.th/pic/imgi_1_535001253_122107948742973201_4332654874288949334_n78b315d493b5e2d2.jpg" />
   <meta property="og:image:width" content="720" />
   <meta property="og:image:height" content="720" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="canonical" href="https://tataptools.github.io/index.html/" />
+  <link rel="canonical" href="https://tataptools.github.io/open/" />
+
+  <style>
+    body { margin:0; min-height:100vh; display:grid; place-items:center; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial; }
+    .card { text-align:center; padding:2rem; }
+    img { max-width: min(720px, 90vw); height:auto; border-radius:16px; }
+    p { opacity:.8 }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>หน้านี้สำหรับพรีวิวโซเชียล</h1>
+    <p>แชร์ลิงก์ <strong>https://tataptools.github.io/open/</strong> เพื่อให้รูปด้านล่างแสดงเป็นพรีวิว</p>
+    <img src="https://img2.pic.in.th/pic/imgi_1_535001253_122107948742973201_4332654874288949334_n78b315d493b5e2d2.jpg" alt="OG preview image" />
+  </main>
 
   <style>
     html, body { height: 100%; }
