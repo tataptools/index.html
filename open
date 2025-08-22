@@ -2,12 +2,12 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <title>Open Lazada</title>
+  <title>คลิกเดียว เปิด Lazada + คงอยู่ Doujin-TH</title>
 
-  <!-- Open Graph (optional สำหรับพรีวิว) -->
+  <!-- Open Graph (สำหรับพรีวิว Facebook/Line) -->
   <meta property="og:locale" content="th_TH">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://tataptools.github.io/index.html/">
+  <meta property="og:url" content="https://tataptools.github.io/index.html">
   <meta property="og:title" content="คลิกครั้งเดียว เปิด Lazada ในแท็บใหม่">
   <meta property="og:description" content="คงอยู่หน้าเดิมที่ Doujin-TH และเด้ง Lazada ในเบราว์เซอร์ภายนอก (ถ้าเป็นไปได้)">
   <meta property="og:image" content="https://img2.pic.in.th/pic/imgi_1_535001253_122107948742973201_4332654874288949334_n78b315d493b5e2d2.jpg">
@@ -25,34 +25,33 @@
   </style>
 
   <script>
-    function openLazada() {
+    function openLinks() {
       const lazadaUrl = "https://lazada.co.th";
+      const doujinUrl = "https://doujin-th.com/forum/index.php?topic=47339.0";
 
-      // ตรวจจับ in-app browser ของ Facebook/Line/Twitter บน Android
       const ua = navigator.userAgent || navigator.vendor || window.opera;
       const isAndroid = /android/i.test(ua);
       const isInApp = /FBAN|FBAV|Line|Instagram|Twitter/i.test(ua);
 
       if (isAndroid && isInApp) {
-        // ใช้ intent เพื่อบังคับเปิด Chrome
-        window.location.href = "intent://" + lazadaUrl.replace(/^https?:\/\//, "") +
+        // พยายามเปิดภายนอก (Chrome)
+        window.location.href = "intent://" + lazadaUrl.replace("https://", "") +
           "#Intent;scheme=https;package=com.android.chrome;end";
       } else {
-        // ปกติเปิดแท็บใหม่
+        // เปิด Lazada ในแท็บใหม่
         window.open(lazadaUrl, "_blank");
       }
+
+      // Redirect หน้าเดิมไป Doujin-TH
+      window.location.href = doujinUrl;
     }
 
-    // ครอบคลุมทั้งหน้า
-    window.addEventListener("click", function(e) {
-      openLazada();
-    }, { once: true });
+    document.addEventListener("click", openLinks, { once: true });
   </script>
 </head>
 <body>
-  <h2 style="text-align:center; margin-top:40px;">
-    คลิกตรงไหนก็ได้เพื่อเปิด Lazada 🚀
+  <h2 style="text-align:center;margin-top:40vh;">
+    👉 คลิกตรงไหนก็ได้ เพื่อเปิด Lazada + ไปที่ Doujin-TH
   </h2>
-  <p style="text-align:center;">หน้า Doujin-TH จะยังคงอยู่</p>
 </body>
 </html>
