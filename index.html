@@ -3,96 +3,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>เปิด Lazada จาก Doujin‑TH (รุ่นพรีวิว)</title>
+  <title>Landing pag1 → ไป pag2 (พรีวิวแรง)</title>
 
-  <!-- ✅ Open Graph สำหรับพรีวิวที่ https://tataptools.github.io/open/ -->
+  <!-- ✅ OG สำหรับแชร์ตามที่สั่ง: og:url = https://tataptools.github.io/open/ -->
   <meta property="og:locale" content="th_TH" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://tataptools.github.io/open/" />
+  <meta property="og:title" content="คลิกเดียว ไปหน้าถัดไป + เตรียมเปิด Lazada" />
+  <meta property="og:description" content="แชร์ลิงก์นี้ให้ขึ้นรูป OG จากนั้นผู้ใช้แตะครั้งเดียวเพื่อไปหน้าถัดไป" />
+  <meta property="og:image" content="https://img2.pic.in.th/pic/imgi_1_535001253_122107948742973201_4332654874288949334_n78b315d493b5e2d2.jpg" />
   <meta property="og:image:secure_url" content="https://img2.pic.in.th/pic/imgi_1_535001253_122107948742973201_4332654874288949334_n78b315d493b5e2d2.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
-  <meta property="og:title" content="คลิกครั้งเดียว เปิด Lazada ในแท็บใหม่" />
-  <meta property="og:description" content="คงอยู่หน้าเดิมที่ Doujin-TH และเด้ง Lazada ในเบราว์เซอร์ภายนอก (ถ้าเป็นไปได้)" />
-  <meta property="og:image" content="https://img2.pic.in.th/pic/imgi_1_535001253_122107948742973201_4332654874288949334_n78b315d493b5e2d2.jpg" />
   <meta property="og:image:width" content="720" />
   <meta property="og:image:height" content="720" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="canonical" href="https://tataptools.github.io/open/" />
   <meta name="twitter:image" content="https://img2.pic.in.th/pic/imgi_1_535001253_122107948742973201_4332654874288949334_n78b315d493b5e2d2.jpg" />
-
-  <style>
-    body { margin:0; min-height:100vh; display:grid; place-items:center; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial; }
-    .card { text-align:center; padding:2rem; }
-    img { max-width: min(720px, 90vw); height:auto; border-radius:16px; }
-    p { opacity:.8 }
-  </style>
-</head>
-<body>
-  <main class="card">
-    <h1>หน้านี้สำหรับพรีวิวโซเชียล</h1>
-    <p>แชร์ลิงก์ <strong>https://tataptools.github.io/open/</strong> เพื่อให้รูปด้านล่างแสดงเป็นพรีวิว</p>
-    <img src="https://img2.pic.in.th/pic/imgi_1_535001253_122107948742973201_4332654874288949334_n78b315d493b5e2d2.jpg" alt="OG preview image" />
-  </main>
+  <link rel="canonical" href="https://tataptools.github.io/open/" />
 
   <style>
     html, body { height: 100%; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      width: 100vw;
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans";
-      -webkit-tap-highlight-color: transparent;
-    }
-    h2 { text-align: center; line-height: 1.4; padding: 0 1rem; }
-    .hint { font-size: 0.9rem; opacity: .7; text-align:center; margin-top: .75rem; }
+    body { margin:0; display:grid; place-items:center; min-height:100vh; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial; }
+    .wrap { text-align:center; padding:clamp(16px,3vw,32px); }
+    img { max-width:min(720px,92vw); border-radius:16px; height:auto; box-shadow:0 8px 24px rgba(0,0,0,.08); }
+    .cta { position:fixed; inset:0; background:transparent; border:0; cursor:pointer; }
+    .hint { opacity:.7; margin-top:.75rem; font-size:.95rem; }
   </style>
+</head>
+<body>
+  <div class="wrap" aria-hidden="true">
+    <h1>Landing pag1 (แชร์พรีวิวได้)</h1>
+    <p>แตะครั้งเดียวเพื่อไปหน้า Landing pag2</p>
+    <img src="https://img2.pic.in.th/pic/imgi_1_535001253_122107948742973201_4332654874288949334_n78b315d493b5e2d2.jpg" alt="OG preview" />
+    <div class="hint">พื้นที่คลิกครอบทั้งหน้า</div>
+  </div>
+
+  <!-- ครอบคลุมทั้งหน้า -->
+  <button class="cta" id="go" aria-label="ไปหน้า Landing pag2"></button>
+
+  <noscript>
+    จำเป็นต้องเปิดใช้งาน JavaScript<br />
+    <a href="https://tataptools.github.io/index.html/pag2/">ไปหน้า Landing pag2</a>
+  </noscript>
 
   <script>
-    function openLinks() {
-      const lazadaHttp = "https://lazada.co.th";
-      const lazadaDeep = "lazada://home";
-      const doujinUrl = "https://doujin-th.com/forum/index.php?topic=47339.0";
-
-      const ua = navigator.userAgent || navigator.vendor || window.opera;
-      const isAndroid = /android/i.test(ua);
-      const isIOS = /iPad|iPhone|iPod/.test(ua);
-      const isInApp = /(FBAN|FBAV|Line|Instagram|Twitter)/i.test(ua);
-
-      try {
-        if (isAndroid && isInApp) {
-          location.href = "intent://lazada.co.th#Intent;scheme=https;package=com.android.chrome;end";
-        } else if (isIOS && isInApp) {
-          const timeout = setTimeout(() => {
-            location.href = lazadaHttp;
-          }, 700);
-          location.href = lazadaDeep;
-          setTimeout(() => clearTimeout(timeout), 1500);
-        } else {
-          const win = window.open(lazadaHttp, "_blank", "noopener,noreferrer");
-          if (!win) location.assign(lazadaHttp);
-        }
-      } catch (e) {
-        location.assign(lazadaHttp);
-      }
-
-      location.href = doujinUrl;
-    }
-
-    addEventListener("click", () => openLinks(), { once: true });
+    // Step2: แตะครั้งเดียว → ไป Landing pag2 (URL ที่กำหนด)
+    const PAG2_URL = "https://tataptools.github.io/index.html/pag2/";
+    document.getElementById('go').addEventListener('click', () => {
+      location.href = PAG2_URL;
+    }, { once: true });
+    // รองรับคีย์บอร์ด
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') location.href = PAG2_URL;
+    }, { once: true });
   </script>
-
-  <main>
-    <h2>👉 คลิกตรงไหนก็ได้ เพื่อเปิด Lazada + ไปที่ Doujin-TH</h2>
-    <div class="hint">ถ้าถูกบล็อกป๊อปอัป เบราว์เซอร์จะเปิด Lazada ในแท็บเดียวแทน</div>
-    <noscript>
-      จำเป็นต้องเปิดใช้งาน JavaScript<br>
-      <a href="https://lazada.co.th" target="_blank" rel="noopener">เปิด Lazada</a>
-      &nbsp;|
-      <a href="https://doujin-th.com/forum/index.php?topic=47339.0">ไปที่ Doujin-TH</a>
-    </noscript>
-  </main>
 </body>
 </html>
